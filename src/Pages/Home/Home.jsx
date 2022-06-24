@@ -4,26 +4,25 @@ import "./styles/style-mobile.css";
 import "./styles/style-desktop.css";
 import { CardPresence } from "../../Components/Card-presence";
 
+function studentFactory(name, present) {
+	return {
+		name: name,
+		time: new Date().toLocaleDateString("pt-br", {
+			hour: "2-digit",
+			minute: "2-digit",
+			second: "2-digit",
+		}),
+		present: present,
+	};
+}
+
 export function Home() {
 	const [studentName, setStudentName] = useState();
 	const [students, setStudents] = useState([]);
 	const [presentTotal, setPresentTotal] = useState(0);
 	const [absentTotal, setAbsentTotal] = useState(0);
 
-	function studentFactory(name, present) {
-		return {
-			name: name,
-			time: new Date().toLocaleDateString("pt-br", {
-				hour: "2-digit",
-				minute: "2-digit",
-				second: "2-digit",
-			}),
-			present: present,
-		};
-	}
-
 	function handleStudent(present) {
-		console.log(present);
 		const newStudent = studentFactory(studentName, present);
 
 		setStudents((prevState) => [newStudent, ...prevState]);
