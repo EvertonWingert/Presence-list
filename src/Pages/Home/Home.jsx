@@ -3,7 +3,18 @@ import "./styles/global.css";
 import "./styles/style-mobile.css";
 import "./styles/style-desktop.css";
 import { CardPresence } from "../../Components/Card-presence";
-import { CardAbsence } from "../../Components/Card-absence";
+
+function studentFactory(name, present) {
+	return {
+		name: name,
+		time: new Date().toLocaleDateString("pt-br", {
+			hour: "2-digit",
+			minute: "2-digit",
+			second: "2-digit",
+		}),
+		present: present,
+	};
+}
 
 export function Home() {
 	const [studentName, setStudentName] = useState();
@@ -12,30 +23,14 @@ export function Home() {
 	const [absentTotal, setAbsentTotal] = useState(0);
 
 	function handleAddPresentStudent() {
-		const newStudent = {
-			name: studentName,
-			time: new Date().toLocaleDateString("pt-br", {
-				hour: "2-digit",
-				minute: "2-digit",
-				second: "2-digit",
-			}),
-			present: true,
-		};
+		const newStudent = studentFactory(studentName, true);
 
 		setStudents((prevState) => [newStudent, ...prevState]);
 		setPresentTotal(presentTotal + 1);
 	}
 
 	function handleAddAbsentStudent() {
-		const newStudent = {
-			name: studentName,
-			time: new Date().toLocaleDateString("pt-br", {
-				hour: "2-digit",
-				minute: "2-digit",
-				second: "2-digit",
-			}),
-			present: false,
-		};
+		const newStudent = studentFactory(studentName, false);
 
 		setStudents((prevState) => [newStudent, ...prevState]);
 		setAbsentTotal(absentTotal + 1);
