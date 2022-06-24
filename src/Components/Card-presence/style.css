@@ -1,7 +1,6 @@
 .Card-presence {
     height: 75px;
     width: 80vw;
-    //background-color: #7CFC00;
     color: #fff;
     display: flex;
     align-items: center;
@@ -31,4 +30,34 @@
 
     }
 
+}
+
+.Card-absence {
+    height: 75px;
+    width: 80vw;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.7rem;
+    border: 1.2px solid #8B0000;
+    border-radius: 10px;
+    font-size: 1.7rem;
+}
+
+@media screen and (max-width: 700px) {
+
+    .Card-absence {
+        height: 75px;
+        width: 80vw;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding: 0.7rem;
+        border: 1.2px solid #8B0000;
+        border-radius: 10px;
+        font-size: 1rem;
+    }
 }
