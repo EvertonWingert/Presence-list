@@ -1,10 +1,10 @@
-import './style.css'
+import "./style.css";
 
-export function CardPresence({user, dateTime}) {
-    return (
-        <div className="Card-presence">
-            <strong>{user}</strong>
-            <strong>{dateTime}</strong>
-        </div>
-    )
+export function CardPresence({ user, dateTime, present }) {
+	return (
+		<div className={present ? "Card-presence" : "Card-absence"}>
+			<strong>{user}</strong>
+			<strong>{dateTime}</strong>
+		</div>
+	);
 }
