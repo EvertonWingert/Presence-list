@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./styles/global.css";
 import "./styles/style-mobile.css";
 import "./styles/style-desktop.css";
-import { CardPresence } from "../../Components/Card-presence";
+import { FormPresence } from "../../Components/Form-presence";
+import { ListPresence } from "../../Components/List-presence";
 
 function studentFactory(name, present) {
 	return {
@@ -17,46 +18,29 @@ function studentFactory(name, present) {
 }
 
 export function Home() {
-	const [studentName, setStudentName] = useState();
 	const [students, setStudents] = useState([]);
-	const [presentTotal, setPresentTotal] = useState(0);
-	const [absentTotal, setAbsentTotal] = useState(0);
 
-	function handleStudent(present) {
-		const newStudent = studentFactory(studentName, present);
-
+	function handleStudent(name, present) {
+		const newStudent = studentFactory(name, present);
 		setStudents((prevState) => [newStudent, ...prevState]);
-
-		if (present) {
-			setPresentTotal(presentTotal + 1);
-		} else {
-			setAbsentTotal(absentTotal + 1);
-		}
 	}
+
+	const totalStudents = useMemo(() => students.length, [students]);
+	const totalPresent = useMemo(() => students.filter((student) => student.present).length, [students]);
+	const totalAbsent = useMemo(() => totalStudents - totalPresent, [totalStudents, totalPresent]);
 
 	return (
 		<div className="Home">
 			<h1>Lista de presença</h1>
 
-			<input type="text" placeholder="Nome do aluno" onChange={(e) => setStudentName(e.target.value)}></input>
-			<div className="buttons">
-				<button type="button" id="button-presence" onClick={() => handleStudent(true)}>
-					Presente
-				</button>
-
-				<button type="button" id="button-absence" onClick={() => handleStudent(false)}>
-					Ausente
-				</button>
-			</div>
+			<FormPresence onSubmitForm={handleStudent} />
 
 			<div className="total">
-				<h3>Presentes: {presentTotal}</h3>
-				<h3>Ausentes: {absentTotal}</h3>
+				<h3>Presentes: {totalPresent}</h3>
+				<h3>Ausentes: {totalAbsent}</h3>
 			</div>
 
-			{students.map((student, index) => (
-				<CardPresence key={index} user={student.name} dateTime={student.time} present={student.present} />
-			))}
+			<ListPresence students={students} />
 		</div>
 	);
 }

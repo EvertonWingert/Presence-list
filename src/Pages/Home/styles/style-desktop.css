@@ -1,13 +1,13 @@
 @media screen and (min-width: 700px) {
 
     .Home {
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       flex-direction: column;
-       margin-top: 3vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 3vh;
     }
-    
+
     .Home h1 {
         color: #fff;
         margin-bottom: 1.5rem;
@@ -23,7 +23,7 @@
         color: #fff;
 
     }
-    
+
     .Home input {
         width: 80vw;
         height: 70px;
@@ -35,7 +35,12 @@
         border-radius: 10px;
         padding: 0.5rem;
     }
-    
+
+
+    .home label {
+        color: #ffff;
+    }
+
     .Home button {
         width: 30vw;
         height: 8vh;
@@ -51,20 +56,20 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .buttons {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 80vw;
     }
-    
+
     #button-presence {
         background-color: #1c1c1c;
         border: 2px solid #7CFC00;
 
     }
-    
+
     hr {
         height: 7vh;
         width: 1vw;
@@ -73,4 +78,4 @@
         border-left: 1px solid #7CFC00;
         margin-bottom: 1.8rem;
     }
-    }
+}
